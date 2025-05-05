@@ -28,10 +28,10 @@ Puedes instalar y probar **SOPO Optimizer** de dos maneras:
 2. Instala las dependencias necesarias:
    pip install -r requirements.txt
 3. Ejecuta la aplicación
-   python OptimizerSOPO.py
+   python OptimizerNose.py
       
 ### 2. Descarga desde la Página Web
-1.Visita la página oficial: SopoOptimizer.cat
+1.Visita la página oficial: http://download.sopowebsite.cat
 2.Descarga el instalador disponible.
 3.Sigue las instrucciones en pantalla para completar la instalación.
 
