@@ -1,4 +1,4 @@
-﻿Write-Host "Desactivando configuraciones de privacidad..."
+Write-Host "Desactivando configuraciones de privacidad..."
 
 # Desactivar notificaciones
 New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userNotificationListener" -Force | Out-Null
@@ -83,5 +83,3 @@ foreach ($path in $paths) {
 }
 
 Write-Host "Todas las configuraciones de privacidad han sido desactivadas correctamente."
-Write-Host "Presiona cualquier tecla para continuar..."
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")

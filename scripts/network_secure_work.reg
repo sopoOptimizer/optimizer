@@ -1,0 +1,91 @@
+Windows Registry Editor Version 5.00
+
+; --- SEGURETAT DE XARXA (Treball) ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient]
+"DisableMultihomeDNSRegistration"=dword:00000001
+"DisableParallelNameResolution"=dword:00000001
+"DisableSmartNameResolution"=dword:00000001
+"EnableMulticast"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters]
+"DisableParallelAandAAAA"=dword:00000001
+"NegativeCacheTime"=dword:00000000
+"NegativeSOACacheTime"=dword:00000000
+"NetFailureCacheTime"=dword:00000000
+"EnableAutoDoh"=dword:00000002
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters]
+"SMB1"=dword:00000000
+"IRPStackSize"=dword:00000032
+"SizReqBuf"=dword:00004410
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NetBT\Parameters\Interfaces]
+"NetBIOSOptions"=dword:00000002
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetBT\Parameters]
+"EnableLMHOSTS"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters]
+"EnableICMPRedirect"=dword:00000000
+"TcpTimedWaitDelay"=dword:0000001e
+"Tcp1323Opts"=dword:00000000
+"TcpMaxConnectRetransmissions"=dword:00000001
+"DelayedAckFrequency"=dword:00000001
+"DelayedAckTicks"=dword:00000001
+"MultihopSets"=dword:0000000f
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\QoS]
+"Do not use NLA"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa]
+"LmCompatibilityLevel"=dword:00000005
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0]
+"RestrictSendingNTLMTraffic"=dword:00000002
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters]
+"EnableLMHash"=dword:00000000
+
+; [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server]
+; "fDenyTSConnections"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Client]
+"DisabledByDefault"=dword:00000001
+"Enabled"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server]
+"DisabledByDefault"=dword:00000001
+"Enabled"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client]
+"DisabledByDefault"=dword:00000001
+"Enabled"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server]
+"DisabledByDefault"=dword:00000001
+"Enabled"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client]
+"DisabledByDefault"=dword:00000001
+"Enabled"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server]
+"DisabledByDefault"=dword:00000001
+"Enabled"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client]
+"DisabledByDefault"=dword:00000001
+"Enabled"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server]
+"DisabledByDefault"=dword:00000001
+"Enabled"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client]
+"DisabledByDefault"=dword:00000000
+"Enabled"=dword:00000001
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server]
+"DisabledByDefault"=dword:00000000
+"Enabled"=dword:00000001
+
+; --- Optimització TCP/IP i QoS ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"NetworkThrottlingIndex"=dword:ffffffff
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Psched]
+"NonBestEffortLimit"=dword:00000000
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AFD\Parameters]
+"NonBlockingSendSpecialBuffering"=dword:00000001
+[HKEY_LOCAL_MACHINE\Software\Microsoft\MSMQ\Parameters]
+"TCPNoDelay"=dword:00000001

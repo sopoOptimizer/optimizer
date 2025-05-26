@@ -1,0 +1,57 @@
+Windows Registry Editor Version 5.00
+
+; --- AFD Tweaks ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AFD\Parameters]
+"BufferAlignment"=dword:00000001
+"DefaultReceiveWindow"=dword:00100000
+"DefaultSendWindow"=dword:00100000
+"DisableAddressSharing"=dword:00000001
+"DisableChainedReceive"=dword:00000001
+"DoNotHoldNICBuffers"=dword:00000001
+"DynamicSendBufferDisable"=dword:00000001
+"FastSendDatagramThreshold"=dword:00000400
+"FastCopyReceiveThreshold"=dword:00000400
+"IgnoreOrderlyRelease"=dword:00000001
+"IgnorePushBitOnReceives"=dword:00000001
+"DisableDirectAcceptEx"=dword:00000001
+
+; --- TCP/IP & Network Tweaks (del .bat) ---
+; Les següents claus provenen de runAdmin.bat i s'apliquen directament aquí.
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters]
+"TcpTimedWaitDelay"=dword:0000001e
+"Tcp1323Opts"=dword:00000000
+"TcpMaxConnectRetransmissions"=dword:00000001
+"DelayedAckFrequency"=dword:00000001
+"DelayedAckTicks"=dword:00000001
+"MultihopSets"=dword:0000000f
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters]
+"IRPStackSize"=dword:00000032
+"SizReqBuf"=dword:00004410
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\QoS]
+"Do not use NLA"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters]
+"NegativeCacheTime"=dword:00000000
+"NegativeSOACacheTime"=dword:00000000
+"NetFailureCacheTime"=dword:00000000
+"EnableAutoDoh"=dword:00000002
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AFD\Parameters]
+"NonBlockingSendSpecialBuffering"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSMQ\Parameters]
+"TCPNoDelay"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"NetworkThrottlingIndex"=dword:ffffffff
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Psched]
+"NonBestEffortLimit"=dword:00000000
+
+; Els canvis de netsh no es poden aplicar via .reg i s'haurien d'aplicar manualment o via script:
+; netsh int tcp set global dca=enabled
+; netsh int tcp set global netdma=enabled
+; netsh interface isatap set state disabled
+; netsh int tcp set global timestamps=disabled

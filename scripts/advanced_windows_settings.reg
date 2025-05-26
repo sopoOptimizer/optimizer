@@ -1,0 +1,75 @@
+Windows Registry Editor Version 5.00
+
+; 10 
+[HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications]
+"NoTileApplicationNotification"=dword:00000001
+
+; 11 
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"SmoothScroll"=dword:00000000
+
+; 12 
+[HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders\Shell]
+"FolderType"="NotSpecified"
+
+; 13 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
+"HideFastUserSwitching"=dword:00000001
+
+; 14 disable ink
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsInkWorkspace]
+"AllowWindowsInkWorkspace"=dword:00000000
+
+; 15 dont tolerate high dpcisr
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
+"ExitLatency"=dword:00000001
+"ExitLatencyCheckEnabled"=dword:00000001
+"Latency"=dword:00000001
+"LatencyToleranceDefault"=dword:00000001
+"LatencyToleranceFSVP"=dword:00000001
+"LatencyTolerancePerfOverride"=dword:00000001
+"LatencyToleranceScreenOffIR"=dword:00000001
+"LatencyToleranceVSyncEnabled"=dword:00000001
+"RtlCapabilityCheckLatency"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Power]
+"DefaultD3TransitionLatencyActivelyUsed"=dword:00000001
+"DefaultD3TransitionLatencyIdleLongTime"=dword:00000001
+"DefaultD3TransitionLatencyIdleMonitorOff"=dword:00000001
+"DefaultD3TransitionLatencyIdleNoContext"=dword:00000001
+"DefaultD3TransitionLatencyIdleShortTime"=dword:00000001
+"DefaultD3TransitionLatencyIdleVeryLongTime"=dword:00000001
+"DefaultLatencyToleranceIdle0"=dword:00000001
+"DefaultLatencyToleranceIdle0MonitorOff"=dword:00000001
+"DefaultLatencyToleranceIdle1"=dword:00000001
+"DefaultLatencyToleranceIdle1MonitorOff"=dword:00000001
+"DefaultLatencyToleranceMemory"=dword:00000001
+"DefaultLatencyToleranceNoContext"=dword:00000001
+"DefaultLatencyToleranceNoContextMonitorOff"=dword:00000001
+"DefaultLatencyToleranceOther"=dword:00000001
+"DefaultLatencyToleranceTimerPeriod"=dword:00000001
+"DefaultMemoryRefreshLatencyToleranceActivelyUsed"=dword:00000001
+"DefaultMemoryRefreshLatencyToleranceMonitorOff"=dword:00000001
+"DefaultMemoryRefreshLatencyToleranceNoContext"=dword:00000001
+"Latency"=dword:00000001
+"MaxIAverageGraphicsLatencyInOneBucket"=dword:00000001
+"MiracastPerfTrackGraphicsLatency"=dword:00000001
+"MonitorLatencyTolerance"=dword:00000001
+"MonitorRefreshLatencyTolerance"=dword:00000001
+"TransitionLatency"=dword:00000001
+
+; 16 x2APIC and BCDEdit Optimizations
+; Enables x2APIC for improved interrupt handling on multi-core CPUs
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
+"PerfBoostMode"=dword:00000002
+
+; Disable boot user interface for faster startup
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Boot]
+"bootux"=dword:00000000
+
+; Optimize interrupt handling and system performance
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\54533251-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318583]
+"Attributes"=dword:00000002
+"x2apicpolicy"=dword:00000001
+"uselegacyapicmode"=dword:00000000
+"tscsyncpolicy"="enhanced"

@@ -1,0 +1,36 @@
+# Optimització de Xarxa per a Gaming
+
+**Fitxer:** network_gaming.reg
+
+Aquest script .reg aplica una combinació avançada d’optimitzacions de xarxa per a obtenir el màxim rendiment en videojocs online. Fusiona tots els tweaks d’AFD i TCP/IP rellevants per a minimitzar la latència, millorar l’estabilitat i maximitzar la resposta de la connexió.
+
+## Què fa cada apartat?
+
+### 1. Tweaks AFD
+Ajusta paràmetres interns del driver AFD (Ancillary Function Driver for Winsock), responsable de la gestió de sockets de xarxa a Windows:
+- **BufferAlignment, DefaultReceiveWindow, DefaultSendWindow:** Optimitzen la gestió de buffers i la finestra de recepció/enviament.
+- **DisableAddressSharing, DisableChainedReceive, DisableDirectAcceptEx:** Desactiven funcionalitats que poden afegir latència o reduir el rendiment.
+- **DoNotHoldNICBuffers, DynamicSendBufferDisable:** Milloren la gestió de memòria i buffers.
+- **FastSendDatagramThreshold, FastCopyReceiveThreshold:** Optimitzen el llindar per a operacions ràpides d’enviament i recepció.
+- **IgnoreOrderlyRelease, IgnorePushBitOnReceives:** Ajusten el comportament de la recepció de paquets per maximitzar la resposta.
+
+### 2. Tweaks TCP/IP i Xarxa
+Optimitzen el protocol TCP/IP i altres paràmetres de xarxa:
+- **TcpTimedWaitDelay, Tcp1323Opts, TcpMaxConnectRetransmissions:** Redueixen el temps d’espera i milloren la gestió de retransmissions.
+- **DelayedAckFrequency, DelayedAckTicks:** Optimitzen la freqüència dels acuses de recepció (ACK).
+- **MultihopSets:** Ajusta la gestió de salts múltiples.
+- **IRPStackSize, SizReqBuf:** Augmenten la capacitat de processament de peticions de xarxa.
+- **Do not use NLA:** Desactiva l’ús de Network Location Awareness per millorar la resposta.
+- **NegativeCacheTime, NegativeSOACacheTime, NetFailureCacheTime, EnableAutoDoh:** Optimitzen la gestió de DNS i caché.
+- **NonBlockingSendSpecialBuffering, TCPNoDelay, NetworkThrottlingIndex, NonBestEffortLimit:** Optimitzen la prioritat i la gestió del trànsit de xarxa per a minimitzar la latència.
+
+## Notes
+- Les ordres `netsh` del script original .bat **no es poden aplicar via .reg**. Si vols optimització completa, afegeix també un script .bat o .ps1 per executar-les.
+- Aquesta optimització està pensada per a **gaming**: pot augmentar l’ús de recursos de xarxa, però maximitza la resposta i minimitza la latència.
+
+## Ús
+Fes doble clic al fitxer .reg o importa’l des de l’Editor del Registre per aplicar totes les optimitzacions.
+
+---
+
+Si vols una explicació detallada de cada clau o una guia d’ús visual, demana-ho!

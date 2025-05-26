@@ -1,0 +1,36 @@
+Windows Registry Editor Version 5.00
+
+; Display power settings
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\ModernSleep]
+"AdaptiveRefreshRate"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
+"VideoIdleTimeout"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers]
+"PowerSavingModeEnabled"=dword:00000000
+"PanelSelfRefresh"=dword:00000000
+"ForceOffScreenTimeout"=dword:00000000
+
+; System power settings
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
+"EnergySaverStatus"=dword:00000000
+"DynamicThrottlePolicy"=dword:00000000
+"HibernateEnabled"=dword:00000000
+"EcoMode"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling]
+"PowerThrottlingOff"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel]
+"GlobalTimerResolutionRequests"=dword:00000001
+
+; Network power settings
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}\0001]
+"PnPCapabilities"=dword:00000024
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}\0002]
+"PnPCapabilities"=dword:00000024
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters]
+"DisablePowerManagement"=dword:00000001

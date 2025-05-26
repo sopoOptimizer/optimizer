@@ -1,0 +1,25 @@
+Windows Registry Editor Version 5.00
+
+; USB peripheral tweaks for improved performance
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USB\Parameters]
+"DisableSelectiveSuspend"=dword:00000001
+"ForceHCResetOnResume"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HidUsb\Parameters]
+"SelectiveSuspendEnabled"=dword:00000000
+"DeviceIdleEnabled"=dword:00000000
+"DisableWakeFromSuspend"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USBXHCI\Parameters]
+"EnhancedPowerManagementEnabled"=dword:00000000
+"DisableLegacyUSBSupport"=dword:00000001
+"DisableSelectiveSuspend"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\usbaudio\Parameters]
+"PowerSettings"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USBHUB3\Parameters]
+"SelectiveSuspendEnabled"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USB]
+"DisableSelectiveSuspend"=dword:00000001
