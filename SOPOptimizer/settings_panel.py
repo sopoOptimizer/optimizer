@@ -255,26 +255,26 @@ class SettingsPanel(QWidget):
             if self.lang != lang:
                 self.change_language(lang)
 
-    class UpdateCheckWorker(QThread):
-        finished = pyqtSignal(str)
-        def __init__(self, script_path):
-            super().__init__()
-            self.script_path = script_path
-        def run(self):
-            import subprocess
-            result = subprocess.run([
-                "powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", self.script_path
-            ], capture_output=True, text=True)
-            salida = result.stdout.strip()
-            self.finished.emit(salida)
-
     def on_check_windows_update(self):
-        import os, sys
+        import os, sys, subprocess
+        from optimizerNose import resource_path
         t = TRANSLATIONS[self.lang]
-        script_path = os.path.join(os.path.dirname(sys.argv[0]), "scripts", "windows_update.ps1")
-        self.worker = self.UpdateCheckWorker(script_path)
-        self.worker.finished.connect(lambda salida: self.show_update_result(salida, t))
-        self.worker.start()
+        script_path = resource_path(os.path.join("scripts", "windows_update.ps1"))
+        try:
+            result = subprocess.run(
+                ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", script_path],
+                capture_output=True,
+                text=True,
+                shell=False,
+                creationflags=subprocess.CREATE_NO_WINDOW
+            )
+            output = result.stdout.strip()
+            if result.returncode == 0:
+                self.show_update_result(output, t)
+            else:
+                self.show_update_result(f"Error al buscar actualizaciones:\n{result.stderr}\n{output}", t)
+        except Exception as e:
+            self.show_update_result(f"Error al ejecutar el script:\n{e}", t)
 
     def show_update_result(self, salida, t):
         from PyQt6.QtWidgets import QMessageBox, QPushButton
@@ -285,8 +285,8 @@ class SettingsPanel(QWidget):
         msg.setText(salida)
         btn_open = QPushButton("Abrir Windows Update")
         def open_winupdate():
-            import os
-            os.system("start ms-settings:windowsupdate")
+            import subprocess
+            subprocess.run(['start', 'ms-settings:windowsupdate'], shell=True)
         btn_open.clicked.connect(open_winupdate)
         msg.addButton(btn_open, QMessageBox.ButtonRole.ActionRole)
         msg.addButton(t.get("ok", "OK"), QMessageBox.ButtonRole.AcceptRole)

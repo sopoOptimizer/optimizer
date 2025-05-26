@@ -35,7 +35,13 @@ class RamCleanerPanel(QWidget):
 
     def free_ram(self):
         # Ruta al ejecutable de RAMMap
-        rammap_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'RAMMap', 'RAMMap.exe'))
+        def resource_path(relative_path):
+            import sys, os
+            if hasattr(sys, '_MEIPASS'):
+                return os.path.join(sys._MEIPASS, relative_path)
+            return os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', relative_path)
+
+        rammap_path = resource_path(os.path.join('RAMMap', 'RAMMap.exe'))
         if not os.path.exists(rammap_path):
             QMessageBox.warning(self, "Error", f"No se encontró RAMMap.exe en: {rammap_path}\nPor favor, descárgalo y colócalo en la carpeta RAMMap.")
             return

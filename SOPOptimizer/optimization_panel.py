@@ -59,6 +59,8 @@ class OptimizationPanel(QWidget):
         try:
             self.title.setText(t["optimization"])
             self.desc.setText(t.get("optimization_desc", "Panel de optimización del sistema."))
+            # Botó de la memòria tècnica
+            self.docs_btn.setText(t.get("docs_btn", "📄 Veure Memòria Tècnica dels Scripts"))
             # Botones de perfil
             self.daily_btn.setText(t.get("daily_profile", "Uso Diario"))
             self.work_btn.setText(t.get("work_profile", "Trabajo"))
@@ -185,73 +187,71 @@ class OptimizationPanel(QWidget):
             "daily_profile": [
                 ("energy_plan_daily", "energy_plan_daily_desc"),
                 ("windows_appearance_daily", "windows_appearance_daily_desc"),
-                ("timeout_daily", "timeout_daily_desc"),
-                ("advanced_windows_daily", "advanced_windows_daily_desc"),
+                ("windows_performance_daily", "windows_performance_daily_desc"),
                 ("system_power_daily", "system_power_daily_desc"),
                 ("peripherals_daily", "peripherals_daily_desc"),
                 ("network_daily", "network_daily_desc"),
-                ("regtweaks_daily", "regtweaks_daily_desc"),
-                ("privacy_daily", "privacy_daily_desc")
+                ("regtweaks_daily", "regtweaks_daily_desc")
             ],
             "work_profile": [
                 ("energy_plan_work", "energy_plan_work_desc"),
                 ("windows_appearance_work", "windows_appearance_work_desc"),
-                ("timeout_work", "timeout_work_desc"),
-                ("advanced_windows_work", "advanced_windows_work_desc"),
+                ("windows_performance_work", "windows_performance_work_desc"),
                 ("secure_network_work", "secure_network_work_desc"),
                 ("regtweaks_work", "regtweaks_work_desc"),
-                ("privacy_work", "privacy_work_desc")
             ],
             "gaming_profile": [
                 ("energy_plan_gaming", "energy_plan_gaming_desc"),
                 ("windows_appearance_gaming", "windows_appearance_gaming_desc"),
-                ("timeout_gaming", "timeout_gaming_desc"),
-                ("advanced_windows_gaming", "advanced_windows_gaming_desc"),
+                ("windows_performance_gaming", "windows_performance_gaming_desc"),
                 ("gaming_disable_gamebar", "gaming_disable_gamebar_desc"),
                 ("gaming_mode", "gaming_mode_desc"),
                 ("gpu_optimization_gaming", "gpu_optimization_gaming_desc"),
                 ("system_power_gaming", "system_power_gaming_desc"),
                 ("peripherals_gaming", "peripherals_gaming_desc"),
-                ("network_gaming", "network_gaming_desc"),
-                ("network_tweaks_gaming", "network_tweaks_gaming_desc"),
-                ("bonus_gaming", "bonus_gaming_desc")
+                ("bonus_gaming", "bonus_gaming_desc"),
+                ("privacidad_windows", "privacidad_windows_desc")
             ]
         }
         # --- NUEVO: Diccionario de scripts por clave interna de optimización ---
         self.optimization_scripts = {
             # Daily
-            "energy_plan_daily": "importar_uso_diario_powerplan.pow",
-            "windows_appearance_daily": "windows_appearance_uso_diario.ps1",
-            "timeout_daily": "timeout_uso_diario.ps1",
-            "advanced_windows_daily": "advanced_windows_uso_diario.ps1",
-            "system_power_daily": "system_power_uso_diario.ps1",
-            "peripherals_daily": "peripheral_uso_diario.ps1",
-            "network_daily": "network_uso_diario.ps1",
-            "regtweaks_daily": "regtweaks_uso_diario.reg",
+            "energy_plan_daily": "importar_uso_diario_powerplan.ps1",
+            "windows_appearance_daily": "adjust_appearance_timeout.bat",
+            "windows_performance_daily": "advanced_windows_settings.reg",
+            "system_power_daily": "system_power_optimization.reg",
+            "peripherals_daily": "peripheral_tweaks.reg",
+            "network_daily": "network_security_daily.reg",
+            "regtweaks_daily": "regtweaks_combined.reg",
             "privacy_daily": "privacy_uso_diario.ps1",
             # Work
-            "energy_plan_work": "importar_trabajo_powerplan.pow",
-            "windows_appearance_work": "windows_appearance_trabajo.ps1",
-            "timeout_work": "timeout_trabajo.ps1",
-            "advanced_windows_work": "advanced_windows_trabajo.ps1",
-            "secure_network_work": "network_trabajo.ps1",
-            "regtweaks_work": "regtweaks_trabajo.reg",
-            "privacy_work": "privacy_trabajo.ps1",
+            "energy_plan_work": "importar_trabajo_powerplan.ps1",
+            "windows_appearance_work": "adjust_appearance_timeout.bat",
+            "windows_performance_work": "advanced_windows_settings.reg",
+            "secure_network_work": "network_secure_work.reg",
+            "regtweaks_work": "regtweaks_extra_work.reg",
             # Gaming
-            "energy_plan_gaming": "importar_gaming_powerplan.pow",
-            "windows_appearance_gaming": "windows_appearance_gaming.ps1",
-            "timeout_gaming": "timeout_gaming.ps1",
-            "advanced_windows_gaming": "advanced_windows_gaming.ps1",
+            "energy_plan_gaming": "importar_gaming_powerplan.ps1",
+            "windows_appearance_gaming": "adjust_appearance_timeout.bat",
+            "windows_performance_gaming": "advanced_windows_settings.reg",
             "gaming_disable_gamebar": "desactivar_grabacion_gamebar.ps1",
             "gaming_mode": "modo_juego.ps1",
-            "gpu_optimization_gaming": "gpu_optimization_gaming.ps1",
-            "system_power_gaming": "system_power_gaming.ps1",
-            "peripherals_gaming": "peripheral_gaming.ps1",
-            "network_gaming": "network_gaming.ps1",
-            "network_tweaks_gaming": "network_tweaks_gaming.ps1",
-            "bonus_gaming": "bonus_gaming.ps1"
+            "gpu_optimization_gaming": "gpu_optimization_gaming.reg",
+            "system_power_gaming": "system_power_optimization.reg",
+            "peripherals_gaming": "peripheral_tweaks.reg",
+            "bonus_gaming": "bonus_gaming.bat",
+            "privacidad_windows": "privacidad_windows.ps1"
         }
         self.checkboxes = []
+
+        # --- Enllaç a la memòria tècnica de scripts ---
+        from PyQt6.QtWidgets import QPushButton
+        import webbrowser
+        # Text traduïble per al botó de la memòria tècnica
+        self.docs_btn = QPushButton("")
+        self.docs_btn.setStyleSheet("font-size: 14px; padding: 8px 0; border-radius: 6px; margin-top: 12px; background-color: #fffffff;")
+        self.docs_btn.clicked.connect(lambda: webbrowser.open('https://docs.google.com/document/d/1vUjwdvWUlWO2fp7RCwsHfRe-b6GY3ineJIRGMr1rMpw/edit?tab=t.0#heading=h.cvgjx7ji6w9n'))
+        self.central_layout.addWidget(self.docs_btn)
         # NO LLAMAR a set_profile aquí, lo hará set_texts al final
         self.daily_btn.clicked.connect(lambda: self.set_profile("daily_profile"))
         self.work_btn.clicked.connect(lambda: self.set_profile("work_profile"))
@@ -267,7 +267,7 @@ class OptimizationPanel(QWidget):
         self.execute_selected_btn.setStyleSheet("font-size: 15px; padding: 12px 0; border-radius: 8px; margin-top: 8px;")
         self.execute_selected_btn.clicked.connect(self.execute_selected_optimizations)
         self.central_layout.addWidget(self.execute_selected_btn)
-        
+
 
         # Nota
         self.note = QLabel()
@@ -322,6 +322,7 @@ class OptimizationPanel(QWidget):
     def execute_scripts(self, scripts, errors):
         self.execute_profile_btn.setEnabled(False)
         self.execute_selected_btn.setEnabled(False)
+
         class ScriptRunner(QObject):
             finished = pyqtSignal(list)
             show_message = pyqtSignal(str, str)
@@ -339,30 +340,28 @@ class OptimizationPanel(QWidget):
                 except Exception as e:
                     local_errors.append(f"Excepción inesperada: {str(e)}")
                 self.finished.emit(local_errors)
-        self.script_thread = QThread()
-        self.script_runner = ScriptRunner(scripts)
-        self.script_runner.moveToThread(self.script_thread)
-        self.script_thread.started.connect(self.script_runner.run)
-        self.script_runner.show_message.connect(lambda title, msg: QMessageBox.information(self, title, msg))
-        def on_finished(errors):
-            self.script_thread.quit()
-            self.script_thread.wait()
-            self.script_runner.deleteLater()
-            self.script_thread.deleteLater()
-            self.execute_profile_btn.setEnabled(True)
-            self.execute_selected_btn.setEnabled(True)
-            if errors:
-                QTimer.singleShot(0, lambda: QMessageBox.warning(self, "Errores al ejecutar", "\n".join(errors)))
-            else:
-                QTimer.singleShot(0, lambda: QMessageBox.information(self, "Optimización", "Se han ejecutado las optimizaciones seleccionadas correctamente."))
-            self.script_thread = None
-            self.script_runner = None
-        self.script_runner.finished.connect(on_finished)
-        self.script_thread.start()
-        return
+
+        self.thread = QThread()
+        self.runner = ScriptRunner(scripts)
+        self.runner.moveToThread(self.thread)
+        self.thread.started.connect(self.runner.run)
+        self.runner.finished.connect(self.on_scripts_finished)
+        self.runner.finished.connect(self.thread.quit)
+        self.runner.finished.connect(self.runner.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+        self.thread.start()
+
 
     def execute_selected_optimizations(self):
         self.execute_profile_optimizations()
+
+    def on_scripts_finished(self, errors):
+        self.execute_profile_btn.setEnabled(True)
+        self.execute_selected_btn.setEnabled(True)
+        if errors:
+            QMessageBox.warning(self, "Errors", "\n".join(errors))
+        else:
+            QMessageBox.information(self, "Optimització completada", "Totes les optimitzacions s'han executat correctament!")
 
     def get_script_filename(self, opt_text):
         # Ya no se usa, pero se mantiene para compatibilidad
